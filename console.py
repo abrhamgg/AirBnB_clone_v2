@@ -175,6 +175,7 @@ class HBNBCommand(cmd.Cmd):
         if c_name not in HBNBCommand.classes:
             print("** class doesn't exist **")
             return
+
         if not c_id:
             print("** instance id missing **")
             return
@@ -219,34 +220,6 @@ class HBNBCommand(cmd.Cmd):
             print("** no instance found **")
 
     def help_destroy(self):
-        """ Destroys a specified object """
-        new = args.partition(" ")
-        c_name = new[0]
-        c_id = new[2]
-        if c_id and ' ' in c_id:
-            c_id = c_id.partition(' ')[0]
-
-        if not c_name:
-            print("** class name missing **")
-            return
-
-        if c_name not in HBNBCommand.classes:
-            print("** class doesn't exist **")
-            return
-
-        if not c_id:
-            print("** instance id missing **")
-            return
-
-        key = c_name + "." + c_id
-
-        try:
-            del(storage.all()[key])
-            storage.save()
-        except KeyError:
-            print("** no instance found **")
-
-    def help_destroy(self):
         """ Help information for the destroy command """
         print("Destroys an individual instance of a class")
         print("[Usage]: destroy <className> <objectId>\n")
@@ -259,7 +232,6 @@ class HBNBCommand(cmd.Cmd):
             args = args.split(' ')[0]  # remove possible trailing args
             if args not in HBNBCommand.classes:
                 print("** class doesn't exist **")
-
                 return
             for k, v in storage._FileStorage__objects.items():
                 if k.split('.')[0] == args:
@@ -301,6 +273,7 @@ class HBNBCommand(cmd.Cmd):
         if c_name not in HBNBCommand.classes:  # class name invalid
             print("** class doesn't exist **")
             return
+
         # isolate id from args
         args = args[2].partition(" ")
         if args[0]:
@@ -377,43 +350,3 @@ class HBNBCommand(cmd.Cmd):
 
 if __name__ == "__main__":
     HBNBCommand().cmdloop()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
