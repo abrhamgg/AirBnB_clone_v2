@@ -15,7 +15,7 @@ class FileStorage:
         same = {}
         for key, val in FileStorage.__objects.items():
             if cls.__name__ in key:
-                same[key] = val
+                same[key] = val.__dict__
         return same
 
     def new(self, obj):
@@ -26,7 +26,7 @@ class FileStorage:
         """Saves storage dictionary to file"""
         with open(FileStorage.__file_path, 'w') as f:
             temp = {}
-            temp.update(FileStorage.__objects)
+            temp.update(self.__objects)
             for key, val in temp.items():
                 temp[key] = val.to_dict()
             json.dump(temp, f)
@@ -58,20 +58,9 @@ class FileStorage:
     def delete(self, obj=None):
         """this method deletes an object from __objects dictionary
            if it exist else it does nothing """
-        if obj != None:
+        if obj is not None:
             try:
                 key = (obj.to_dict())['__class__'] + '.' + str(obj.id)
                 del FileStorage.__objects[key]
             except Exception:
                 return
-
-
-
-
-
-
-
-
-
-
-

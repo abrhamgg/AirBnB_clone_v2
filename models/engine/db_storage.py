@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""This is the file storage class for AirBnB"""
+"""module to manage db stoarage for hbnb clone"""
 
 from models.base_model import Base
 from models.user import User
@@ -22,8 +22,7 @@ class DBStorage:
     __session = None
 
     def __init__(self):
-        """ Constructor """
-
+        """initializing virtual enviroment"""
         sqlUser = environ.get('HBNB_MYSQL_USER')
         sqlPwd = environ.get('HBNB_MYSQL_PWD')
         sqlHost = environ.get('HBNB_MYSQL_HOST')
@@ -42,35 +41,34 @@ class DBStorage:
         Query on the current database session (self.__session)
         all objects depending of the class name (argument cls)
         """
-
         session = self.__session
         dic = {}
         if not cls:
-            tables = [User, State, City, Amenity, Place, Review]
-
+            tables = [User, State, City]
         else:
             if type(cls) == str:
-                cls = eval(csl)
-
+                cls = eval(cls)
             tables = [cls]
-
         for t in tables:
             query = session.query(t).all()
-
             for rows in query:
                 key = "{}.{}".format(type(rows).__name__, rows.id)
                 dic[key] = rows
-
         return dic
 
     def new(self, obj):
         """ add the object to the current database session """
-        if obj:
+        if obj is not None:
             self.__session.add(obj)
 
     def save(self):
         """ commit all changes of the current database session """
-        self.__session.commit()
+        try:
+            self.__session.commit()
+        except Exception:
+            self.__session.rollback()
+        finally:
+            self.__session.close()
 
     def delete(self, obj=None):
         """ delete from module import symbol
