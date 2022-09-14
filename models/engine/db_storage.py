@@ -44,7 +44,7 @@ class DBStorage:
         session = self.__session
         dic = {}
         if not cls:
-            tables = [User, State, City]
+            tables = [User, State, City, Place, Amenity, Review]
         else:
             if type(cls) == str:
                 cls = eval(cls)

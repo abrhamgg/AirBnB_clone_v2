@@ -12,4 +12,3 @@ if storage_type == 'db':
 else:
     storage = FileStorage()
     storage.reload()
-
