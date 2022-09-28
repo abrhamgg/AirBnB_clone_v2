@@ -1,5 +1,5 @@
-#!/usr/bin/env python3
-"""fabscript that generates a tgz file"""
+#!/usr/bin/python3
+"""fab script that generates a tgz file"""
 import os.path
 import datetime
 from time import strftime
