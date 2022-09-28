@@ -1,17 +1,16 @@
 #!/usr/bin/python3
-"""fab script that generates a tgz file"""
-import os.path
-import datetime
-from fabric.api import run, local
+# prepare tar file
+from fabric.api import local
+from time import strftime
 
 
 def do_pack():
-    """function that generates a tgz file"""
-    time = strftime("%Y%M%d%H%M%S")
-    local('mkdir -p versions')
+    """generate .tgz archive"""
+    timenow = strftime("%Y%M%d%H%M%S")
     try:
-        filename = f'versions/web_static_{time}.tgz'
-        local(f'tar -cvzf  versions/web_static_{time}.tgz web_static/')
+        local("mkdir -p versions")
+        filepath = "versions/web_static_{}.tgz".format(timenow)
+        local("tar -cvzf {} web_static/".format(filepath))
         return filename
-    except Exception:
+    except:
         return None
