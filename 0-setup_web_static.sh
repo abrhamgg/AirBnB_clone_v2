@@ -17,4 +17,4 @@ sudo chown -R ubuntu:ubuntu /data/ 2>/dev/null
 
 ALIAS="\\\tlocation /hbnb_static {\n\t\talias /data/web_static/current/;\n\t}"
 sudo sed -i "39i $ALIAS" /etc/nginx/sites-available/default
-sudo service nginx reload
+sudo service nginx start
