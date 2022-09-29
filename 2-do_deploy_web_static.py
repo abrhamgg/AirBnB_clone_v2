@@ -30,8 +30,6 @@ def do_deploy(archive_path):
     filename_full = filename + '.tgz'
     try:
         put(archive_path, "/tmp/")
-        print(filename)
-        print(archive_path)
         run(f'tar xzvf /tmp/{filename_full} -C /data/web_static/releases/')
         run(f'mv /data/web_static/releases/web_static '
             f'/data/web_static/releases/{filename}')
