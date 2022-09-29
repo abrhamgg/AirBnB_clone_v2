@@ -2,12 +2,9 @@
 """
 deploy files to server
 """
-from fabric.api import local, put, run
-from time import strftime
+from fabric.api import put, run
 from fabric.state import env
 import os
-
-
 env.hosts = ['18.232.187.106', '18.206.13.226']
 env.user = "ubuntu"
 
