@@ -3,6 +3,7 @@
 from fabric.api import local, put, run
 from time import strftime
 from fabric.state import env
+import os
 
 
 def do_pack():
@@ -22,6 +23,8 @@ env.hosts = ['18.232.187.106', '18.206.13.226']
 
 def do_deploy(archive_path):
     """distributes archive to web server"""
+    if not os.path.exists(archive_path):
+        return False
     filename = archive_path.split('.')[0]
     filename = filename.split('/')[1]
     filename_full = filename + '.tgz'
