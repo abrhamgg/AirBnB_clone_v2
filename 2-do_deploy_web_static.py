@@ -1,25 +1,16 @@
 #!/usr/bin/python3
-# prepare tar file
+"""
+deploy files to server
+"""
 from fabric.api import local, put, run
 from time import strftime
 from fabric.state import env
 import os
 
 
-def do_pack():
-    """generate .tgz archive"""
-    timenow = strftime("%Y%M%d%H%M%S")
-    try:
-        local("mkdir -p versions")
-        filepath = "versions/web_static_{}.tgz".format(timenow)
-        local("tar -cvzf {} web_static/".format(filepath))
-        return filepath
-    except Exception:
-        return None
-
-
 env.hosts = ['18.232.187.106', '18.206.13.226']
 env.user = "ubuntu"
+
 
 def do_deploy(archive_path):
     """distributes archive to web server"""
