@@ -6,7 +6,6 @@ from fabric.api import put, run
 from fabric.state import env
 import os
 env.hosts = ['18.232.187.106', '18.206.13.226']
-env.user = "ubuntu"
 
 
 def do_deploy(archive_path):
@@ -21,8 +20,8 @@ def do_deploy(archive_path):
         run(f'tar xzvf /tmp/{filename_full} -C /data/web_static/releases/')
         run(f'mv /data/web_static/releases/web_static '
             f'/data/web_static/releases/{filename}')
-        run(f'sudo rm -rf /tmp/{filename_full}')
-        run('sudo rm /data/web_static/current')
+        run(f'rm -rf /tmp/{filename_full}')
+        run('rm /data/web_static/current')
         run(f'ln -s /data/web_static/releases/{filename} '
             f'/data/web_static/current')
         return True
