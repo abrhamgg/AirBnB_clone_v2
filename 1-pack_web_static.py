@@ -11,6 +11,6 @@ def do_pack():
         local("mkdir -p versions")
         filepath = "versions/web_static_{}.tgz".format(timenow)
         local("tar -cvzf {} web_static/".format(filepath))
-        return filename
+        return filepath
     except:
         return None
