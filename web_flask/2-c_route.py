@@ -21,7 +21,7 @@ def hbnb():
 @app.route('/c/<string:text>', strict_slashes=False)
 def cIsFun(text):
     """accepts a string argument as input"""
-    text = text.replace(' ', '_')
+    text = text.replace('_', ' ')
     return "C {}".format(text)
 
 
