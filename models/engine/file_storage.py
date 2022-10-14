@@ -64,7 +64,7 @@ class FileStorage:
                 del FileStorage.__objects[key]
             except Exception:
                 return
-    
+
     def close(self):
         """public method for deserializing the JSON file to object"""
         self.reload()
