@@ -5,19 +5,24 @@
 from models import storage
 from flask import Flask
 from models.state import State
+from models.city import City
 from flask import render_template
 
 app = Flask(__name__)
 
 
-@app.route("/states_list", strict_slashes=False)
+@app.route("/cities_by_states", strict_slashes=False)
 def states_list():
     """Displays an HTML page with a list of all State objects in DBStorage.
     States are sorted by name.
     """
     states = storage.all(State).values()
+    cities = storage.all(City).values()
     states = sorted(states, key=lambda k: k.name)
-    return render_template("7-states_list.html", states=states)
+    cities = sorted(cities, key=lambda k: k.name)
+    print(cities)
+    return render_template("8-cities_by_states.html",
+                           states=states, cities=cities)
 
 
 @app.teardown_appcontext
