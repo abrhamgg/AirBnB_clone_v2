@@ -56,6 +56,11 @@ def num_type(n):
         return render_template('6-number_odd_or_even.html', n=n)
 
 
+@app.teardown_appcontext
+def tear_down():
+    """removes current sqlalchemy session"""
+    storage.close()
+
 @app.route('/states_list', strict_slashes=False)
 def state_list():
     """list states"""
