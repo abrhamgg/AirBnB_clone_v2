@@ -65,7 +65,8 @@ def state_list():
         k = k.split('.')[1]
         state_list[k] = v.name
     print(state_list)
-    return render_template('7-states_list.html', state_list=state_list)
+    sorted_state = dict(sorted(state_list.items(), key=lambda item: item[1]))
+    return render_template('7-states_list.html', state_list=sorted_state)
 
 
 if __name__ == "__main__":
