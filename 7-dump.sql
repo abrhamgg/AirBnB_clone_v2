@@ -26,7 +26,7 @@ GRANT ALL ON hbnb_dev_db.* TO 'hbnb_dev'@'localhost';
 GRANT SELECT ON performance_schema.* TO 'hbnb_dev'@'localhost';
 FLUSH PRIVILEGES;
 
-USE hbnb_dev_db;
+USE final;
 
 --
 -- Table structure for table `cities`
